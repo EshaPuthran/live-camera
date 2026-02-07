@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Camera Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { text-align:center; font-family: Arial; background:#000; color:white; }
+    video { width: 95%; max-width: 500px; margin-top: 20px; border-radius: 10px; }
+    button { padding:10px 20px; font-size:16px; margin-top:15px; }
+  </style>
+</head>
+<body>
+
+<h2>Live Camera View 📷</h2>
+<button onclick="startCamera()">Start Camera</button>
+<br>
+<video id="video" autoplay playsinline></video>
+
+<script>
+function startCamera() {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
+    .then(stream => {
+      document.getElementById('video').srcObject = stream;
+    })
+    .catch(err => alert("Camera permission denied or not supported."));
+}
+</script>
+
+</body>
+</html>
